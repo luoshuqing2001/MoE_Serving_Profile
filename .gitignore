@@ -1,0 +1,9 @@
+LLMs/
+third_party/transformers-5.19.0/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+outputs/
+datasets/
+.venv/

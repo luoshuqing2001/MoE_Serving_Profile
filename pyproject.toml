@@ -1,0 +1,12 @@
+[project]
+name = "moe-serving"
+version = "0.1.0"
+description = "Expert-parallel inference for MoE models, with Engram tables kept in DRAM."
+requires-python = ">=3.10"
+dependencies = ["torch", "safetensors"]
+
+[project.scripts]
+moe-serving = "moe_serving.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["moe_serving*"]
