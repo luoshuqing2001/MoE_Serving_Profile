@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-24",
+  "torch": "2.16.0.dev20261021+cu130",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "mode": "efficient",
+  "reference_bitwise_equivalence_claimed": false,
+  "real_model_smokes": [
+    {
+      "checkpoint": "gpt-oss-120b",
+      "tp_size": 4,
+      "ep_size": 4,
+      "batch_size": 2,
+      "decode_tokens": 4,
+      "output": "outputs/efficient_120b_smoke",
+      "status": "passed"
+    },
+    {
+      "checkpoint": "gpt-oss-120b",
+      "tp_size": 4,
+      "ep_size": 4,
+      "batch_size": 2,
+      "dataset": "GSM8K",
+      "reasoning_effort": "high",
+      "decode_tokens_per_sample": 128,
+      "output": "outputs/efficient_120b_gsm8k_probe_v2",
+      "status": "passed",
+      "accuracy_evaluation": false,
+      "both_hit_token_limit": true
+    },
+    {
+      "checkpoint": "Qwen3-30B-A3B-Instruct-2507-FP8",
+      "tp_size": 4,
+      "ep_size": 4,
+      "batch_size": 2,
+      "decode_tokens": 4,
+      "output": "outputs/efficient_qwen30b_smoke",
+      "status": "passed",
+      "note": "This smoke preceded gate/up grouped GEMM consolidation; final consolidated kernels also undergo synthetic model and EP checks."
+    }
+  ],
+  "full_checkpoint_smokes_not_run": [
+    "gpt-oss-20b",
+    "Qwen3-235B-A22B-Instruct-2507-FP8"
+  ],
+  "regression_tests": {
+    "passed": 37,
+    "log": "/tmp/moe_regression.log"
+  },
+  "gpu_contention": "Other training jobs active; single-layer benchmark is not an end-to-end speedup claim.",
+  "source_sha256": {
+    "moe_serving/efficient_kernels.py": "db7c23717789554eed3327df49e04f5548e9f514c344e156d9f752c7dd58387b",
+    "moe_serving/gpt_oss_parallel.py": "0058a9ee18b138c98cbc90f2d9a9d89450e965f7e743735fbef1205f41fc89f7",
+    "moe_serving/qwen3_parallel.py": "822c35891f2ec2baa76176a9386bd93105570ae0153ee807755661bfeaf7cd30"
+  },
+  "offline_kernel_preflight": "passed",
+  "gpu_checks": {
+    "flash_attention_padding_sink_decode": "passed",
+    "grouped_ep_including_empty_ranks": "passed",
+    "tp1_ep1_vs_tp4_ep4_padded_batch_and_cached_decode": "passed"
+  },
+  "optimized_model_comparison": {
+    "max_relative_l2": 0.029984645545482635,
+    "all_greedy_tokens_equal": true,
+    "comparisons": 10
+  }
+}

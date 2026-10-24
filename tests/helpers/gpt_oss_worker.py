@@ -20,14 +20,14 @@ from transformers import GptOssConfig, GptOssForCausalLM
 from transformers.integrations.mxfp4 import _convert_moe_packed_tensors
 
 
-def fixture(path, packed):
+def fixture(path, packed, kv_heads=2):
     torch.manual_seed(17)
     config = GptOssConfig(
         hidden_size=32,
         intermediate_size=32,
         head_dim=8,
         num_attention_heads=4,
-        num_key_value_heads=2,
+        num_key_value_heads=kv_heads,
         num_local_experts=4,
         num_experts_per_tok=2,
         num_hidden_layers=2,
@@ -73,11 +73,19 @@ def main():
     rank = dist.get_rank() if dist.is_initialized() else 0
     world = dist.get_world_size() if dist.is_initialized() else 1
     # Construct the identical reference on every rank; only rank zero writes.
-    reference = fixture(path / f"rank{rank}", packed)
+    reference = fixture(path / f"rank{rank}", packed, 4 if world == 4 else 2)
     tp = int(sys.argv[4]) if len(sys.argv) > 4 else world
     ep = int(sys.argv[5]) if len(sys.argv) > 5 else world
+    dtype = getattr(torch, sys.argv[6]) if len(sys.argv) > 6 else torch.float32
+    for parameter in reference.parameters():
+        parameter.data = parameter.data.to(dtype)
     model = load_parallel_model(
-        path / f"rank{rank}", tp, ep, dtype=torch.float32, expert_storage=storage
+        path / f"rank{rank}",
+        tp,
+        ep,
+        dtype=dtype,
+        expert_storage=storage,
+        numerics=sys.argv[7] if len(sys.argv) > 7 else "reference",
     )
     ids = torch.tensor([[0, 1, 2, 3], [4, 5, 6, 7]])
     mask = (ids != 0).long()
@@ -89,6 +97,10 @@ def main():
         actual = model(ids, attention_mask=mask, position_ids=pos, use_cache=True)
         expected = reference(ids, attention_mask=mask, position_ids=pos, use_cache=True)
         torch.testing.assert_close(actual.logits, expected.logits, atol=2e-5, rtol=2e-5)
+        if dtype == torch.bfloat16 and (
+            len(sys.argv) <= 7 or sys.argv[7] == "reference"
+        ):
+            assert torch.equal(actual.logits, expected.logits)
         for record, other in zip(trace.records, ref_trace.records):
             assert torch.equal(record["expert_indices"], other["expert_indices"])
             torch.testing.assert_close(

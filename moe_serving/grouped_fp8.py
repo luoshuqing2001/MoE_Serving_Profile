@@ -15,8 +15,10 @@ _PATCHES = (
     (
         "grouped.py",
         "bs_ptrs = Bs + expert_id * stride_bs_e + pid_n * stride_bs_n",
-        "offs_bsn = offs_bn // BLOCK_SIZE_N\n"
-        "    bs_ptrs = Bs + expert_id * stride_bs_e + offs_bsn * stride_bs_n",
+        (
+            "offs_bsn = offs_bn // BLOCK_SIZE_N\n"
+            "    bs_ptrs = Bs + expert_id * stride_bs_e + offs_bsn * stride_bs_n"
+        ),
     ),
     (
         "batched.py",
@@ -26,13 +28,19 @@ _PATCHES = (
 )
 
 
-def patch_grouped_fp8_kernel() -> list[Path]:
+def patch_grouped_fp8_kernel(root: Path | None = None) -> list[Path]:
     """Patch cached kernel files. Already-patched files are left as they are."""
-    root = Path.home() / ".cache" / "huggingface" / "hub"
+    private_copy = root is not None
+    root = root or Path.home() / ".cache" / "huggingface" / "hub"
     if not root.is_dir():
         return []
     patched: list[Path] = []
-    for path in root.glob("kernels--kernels-community--finegrained-fp8/**/*.py"):
+    paths = (
+        root.rglob("*.py")
+        if private_copy
+        else root.glob("kernels--kernels-community--finegrained-fp8/**/*.py")
+    )
+    for path in paths:
         text = path.read_text()
         updated = text
         for filename, old, new in _PATCHES:

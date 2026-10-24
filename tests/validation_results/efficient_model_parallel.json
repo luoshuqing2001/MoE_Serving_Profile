@@ -1,0 +1,62 @@
+[
+  {
+    "family": "gpt_oss",
+    "step": 0,
+    "relative_l2": 0.00660105561837554,
+    "greedy_equal": true
+  },
+  {
+    "family": "gpt_oss",
+    "step": 1,
+    "relative_l2": 0.005566533654928207,
+    "greedy_equal": true
+  },
+  {
+    "family": "gpt_oss",
+    "step": 2,
+    "relative_l2": 0.006176800467073917,
+    "greedy_equal": true
+  },
+  {
+    "family": "gpt_oss",
+    "step": 3,
+    "relative_l2": 0.005670826882123947,
+    "greedy_equal": true
+  },
+  {
+    "family": "gpt_oss",
+    "step": 4,
+    "relative_l2": 0.007664943113923073,
+    "greedy_equal": true
+  },
+  {
+    "family": "qwen3_moe",
+    "step": 0,
+    "relative_l2": 0.007034295238554478,
+    "greedy_equal": true
+  },
+  {
+    "family": "qwen3_moe",
+    "step": 1,
+    "relative_l2": 0.00820558425039053,
+    "greedy_equal": true
+  },
+  {
+    "family": "qwen3_moe",
+    "step": 2,
+    "relative_l2": 0.029984645545482635,
+    "greedy_equal": true
+  },
+  {
+    "family": "qwen3_moe",
+    "step": 3,
+    "relative_l2": 0.007483705412596464,
+    "greedy_equal": true
+  },
+  {
+    "family": "qwen3_moe",
+    "step": 4,
+    "relative_l2": 0.007467782124876976,
+    "greedy_equal": true
+  }
+]

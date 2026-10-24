@@ -1,0 +1,2 @@
+# Keep the existing CUDA-compatible Torch/Triton/FlashAttention 3 installation.
+kernels==0.17.2

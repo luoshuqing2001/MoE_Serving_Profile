@@ -1,0 +1,12 @@
+{
+  "checkpoint": "gpt-oss-120b",
+  "layer": 0,
+  "local_experts": 32,
+  "tokens": 4,
+  "top_k": 4,
+  "relative_l2": 0.004198659677058458,
+  "python_loop_ms": 199.22198199977478,
+  "grouped_mxfp4_ms": 70.92138354928466,
+  "speedup": 2.809053800555534,
+  "scope": "single layer, no TP/EP communication; other GPU workloads may be active"
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "family": "gpt_oss",
+    "tokens": 4,
+    "relative_l2": 0.002918464597314596,
+    "ep_size": 4
+  },
+  {
+    "family": "gpt_oss",
+    "tokens": 97,
+    "relative_l2": 0.0028776179533451796,
+    "ep_size": 4
+  },
+  {
+    "family": "gpt_oss",
+    "tokens": 1,
+    "relative_l2": 0.002996075665578246,
+    "ep_size": 4
+  },
+  {
+    "family": "qwen3_moe",
+    "tokens": 4,
+    "relative_l2": 0.04718032106757164,
+    "ep_size": 4
+  },
+  {
+    "family": "qwen3_moe",
+    "tokens": 97,
+    "relative_l2": 0.04467129707336426,
+    "ep_size": 4
+  },
+  {
+    "family": "qwen3_moe",
+    "tokens": 1,
+    "relative_l2": 0.046134304255247116,
+    "ep_size": 4
+  }
+]

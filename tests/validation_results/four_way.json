@@ -1,0 +1,836 @@
+{
+  "tp_size": 4,
+  "ep_size": 4,
+  "cases": [
+    {
+      "dtype": "float32",
+      "atol": 0.001,
+      "rtol": 0.0002,
+      "numerical_pass": true,
+      "routing_exact": true,
+      "top1_exact": true,
+      "batch_vs_solo_pass": true,
+      "seconds": 53.43665465799859,
+      "decode_steps": 2,
+      "token_rows": [
+        [
+          4827,
+          382,
+          1920,
+          2932,
+          3407,
+          30,
+          27204,
+          261,
+          4022,
+          6052,
+          13
+        ],
+        [
+          176289,
+          10057,
+          36,
+          51088,
+          13
+        ]
+      ],
+      "model": "gpt_oss_20b",
+      "layers": 24,
+      "full_model": true,
+      "passed": true,
+      "report": "outputs/correctness/gpt_oss_20b_fp32.json",
+      "max_logit_abs_error": 7.033348083496094e-06,
+      "max_logit_relative_l2": 4.3094593138448545e-07,
+      "logits_within_tolerance": true,
+      "top1_mismatches": [],
+      "hidden_checks_differing": 0,
+      "cache_within_tolerance": true,
+      "max_hidden_relative_l2": 1.4351293202707893e-06,
+      "routing_checks": 144,
+      "routing_checks_differing": 0,
+      "batch_vs_solo": [
+        {
+          "pass": true,
+          "max_abs": 5.245208740234375e-06,
+          "relative_l2": 2.468912612130225e-07
+        },
+        {
+          "pass": true,
+          "max_abs": 5.0067901611328125e-06,
+          "relative_l2": 2.725844581163983e-07
+        },
+        {
+          "pass": true,
+          "max_abs": 6.198883056640625e-06,
+          "relative_l2": 3.7075341197123635e-07
+        }
+      ],
+      "native_batch_vs_solo": [
+        {
+          "step": 0,
+          "max_abs": 7.152557373046875e-06,
+          "relative_l2": 3.0275566587079084e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 1,
+          "max_abs": 4.76837158203125e-06,
+          "relative_l2": 3.00480309078921e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 2,
+          "max_abs": 5.7220458984375e-06,
+          "relative_l2": 3.3563591728125175e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        }
+      ],
+      "config_sha256": "3a2a26ded679375b7928ddeca59764df7cea83220c1961035f6d6e232659e9ce",
+      "weight_index_sha256": "0e085b977c4c9942f85938828e8c989ed7d5cdabf852e4da6a67c116cd502cd1",
+      "resident": {
+        "numerical_pass": true,
+        "routing_exact": true,
+        "top1_exact": true,
+        "report": "outputs/correctness/gpt_oss_20b_fp32_resident.json",
+        "top1_mismatches": [],
+        "max_logit_abs_error": 7.033348083496094e-06
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "atol": 0.25,
+      "rtol": 0.03,
+      "numerical_pass": false,
+      "routing_exact": false,
+      "top1_exact": true,
+      "batch_vs_solo_pass": false,
+      "seconds": 53.11497513799986,
+      "decode_steps": 2,
+      "token_rows": [
+        [
+          4827,
+          382,
+          1920,
+          2932,
+          3407,
+          30,
+          27204,
+          261,
+          4022,
+          6052,
+          13
+        ],
+        [
+          176289,
+          10057,
+          36,
+          51088,
+          13
+        ]
+      ],
+      "model": "gpt_oss_20b",
+      "layers": 24,
+      "full_model": true,
+      "passed": false,
+      "report": "outputs/correctness/gpt_oss_20b_bf16.json",
+      "max_logit_abs_error": 0.3046875,
+      "max_logit_relative_l2": 0.009118271991610527,
+      "logits_within_tolerance": false,
+      "top1_mismatches": [],
+      "hidden_checks_differing": 127,
+      "cache_within_tolerance": false,
+      "max_hidden_relative_l2": 0.041893843561410904,
+      "routing_checks": 144,
+      "routing_checks_differing": 16,
+      "batch_vs_solo": [
+        {
+          "pass": false,
+          "max_abs": 0.28125,
+          "relative_l2": 0.01484339777380228
+        },
+        {
+          "pass": false,
+          "max_abs": 1.21875,
+          "relative_l2": 0.06850123405456543
+        },
+        {
+          "pass": true,
+          "max_abs": 0.28125,
+          "relative_l2": 0.016579456627368927
+        }
+      ],
+      "native_batch_vs_solo": [
+        {
+          "step": 0,
+          "max_abs": 0.125,
+          "relative_l2": 0.005748596042394638,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 1,
+          "max_abs": 1.21875,
+          "relative_l2": 0.06940014660358429,
+          "pointwise_pass": false,
+          "top1_exact": true
+        },
+        {
+          "step": 2,
+          "max_abs": 0.1875,
+          "relative_l2": 0.0115963788703084,
+          "pointwise_pass": true,
+          "top1_exact": true
+        }
+      ],
+      "config_sha256": "3a2a26ded679375b7928ddeca59764df7cea83220c1961035f6d6e232659e9ce",
+      "weight_index_sha256": "0e085b977c4c9942f85938828e8c989ed7d5cdabf852e4da6a67c116cd502cd1",
+      "resident": {
+        "numerical_pass": false,
+        "routing_exact": false,
+        "top1_exact": true,
+        "report": "outputs/correctness/gpt_oss_20b_bf16_resident.json",
+        "top1_mismatches": [],
+        "max_logit_abs_error": 0.3046875
+      }
+    },
+    {
+      "dtype": "float32",
+      "atol": 0.001,
+      "rtol": 0.0002,
+      "numerical_pass": false,
+      "routing_exact": true,
+      "top1_exact": true,
+      "batch_vs_solo_pass": true,
+      "seconds": 149.1329915009992,
+      "decode_steps": 2,
+      "token_rows": [
+        [
+          4827,
+          382,
+          1920,
+          2932,
+          3407,
+          30,
+          27204,
+          261,
+          4022,
+          6052,
+          13
+        ],
+        [
+          176289,
+          10057,
+          36,
+          51088,
+          13
+        ]
+      ],
+      "model": "gpt_oss_120b",
+      "layers": 36,
+      "full_model": true,
+      "passed": false,
+      "report": "outputs/correctness/gpt_oss_120b_fp32.json",
+      "max_logit_abs_error": 1.1444091796875e-05,
+      "max_logit_relative_l2": 3.311801322070096e-07,
+      "logits_within_tolerance": true,
+      "top1_mismatches": [],
+      "hidden_checks_differing": 16,
+      "cache_within_tolerance": true,
+      "max_hidden_relative_l2": 7.105574582055851e-07,
+      "routing_checks": 216,
+      "routing_checks_differing": 0,
+      "batch_vs_solo": [
+        {
+          "pass": true,
+          "max_abs": 6.198883056640625e-06,
+          "relative_l2": 2.8625885306610144e-07
+        },
+        {
+          "pass": true,
+          "max_abs": 2.86102294921875e-06,
+          "relative_l2": 2.3095404344530834e-07
+        },
+        {
+          "pass": true,
+          "max_abs": 2.86102294921875e-06,
+          "relative_l2": 1.900638295637691e-07
+        }
+      ],
+      "native_batch_vs_solo": [
+        {
+          "step": 0,
+          "max_abs": 1.1444091796875e-05,
+          "relative_l2": 4.3664860527314886e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 1,
+          "max_abs": 3.814697265625e-06,
+          "relative_l2": 2.3727660902750358e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 2,
+          "max_abs": 2.86102294921875e-06,
+          "relative_l2": 1.8555411429588275e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        }
+      ],
+      "config_sha256": "933aeb666a3fd851133ddd7686414f369bc564c4185fb5704416550879f10566",
+      "weight_index_sha256": "ede2655fdc05008561983b6e0829c600727c28d591e071077377059f03a6c00e",
+      "resident": {
+        "numerical_pass": true,
+        "routing_exact": true,
+        "top1_exact": true,
+        "report": "outputs/correctness/gpt_oss_120b_fp32_resident.json",
+        "top1_mismatches": [],
+        "max_logit_abs_error": 1.1444091796875e-05
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "atol": 0.25,
+      "rtol": 0.03,
+      "numerical_pass": false,
+      "routing_exact": false,
+      "top1_exact": true,
+      "batch_vs_solo_pass": false,
+      "seconds": 152.51225453599181,
+      "decode_steps": 2,
+      "token_rows": [
+        [
+          4827,
+          382,
+          1920,
+          2932,
+          3407,
+          30,
+          27204,
+          261,
+          4022,
+          6052,
+          13
+        ],
+        [
+          176289,
+          10057,
+          36,
+          51088,
+          13
+        ]
+      ],
+      "model": "gpt_oss_120b",
+      "layers": 36,
+      "full_model": true,
+      "passed": false,
+      "report": "outputs/correctness/gpt_oss_120b_bf16.json",
+      "max_logit_abs_error": 2.125,
+      "max_logit_relative_l2": 0.08836240321397781,
+      "logits_within_tolerance": false,
+      "top1_mismatches": [],
+      "hidden_checks_differing": 193,
+      "cache_within_tolerance": false,
+      "max_hidden_relative_l2": 0.16666388511657715,
+      "routing_checks": 216,
+      "routing_checks_differing": 90,
+      "batch_vs_solo": [
+        {
+          "pass": false,
+          "max_abs": 1.0078125,
+          "relative_l2": 0.07768438011407852
+        },
+        {
+          "pass": false,
+          "max_abs": 0.609375,
+          "relative_l2": 0.048173703253269196
+        },
+        {
+          "pass": false,
+          "max_abs": 0.53125,
+          "relative_l2": 0.027985114604234695
+        }
+      ],
+      "native_batch_vs_solo": [
+        {
+          "step": 0,
+          "max_abs": 0.265625,
+          "relative_l2": 0.01808798871934414,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 1,
+          "max_abs": 0.15625,
+          "relative_l2": 0.011749111115932465,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 2,
+          "max_abs": 0.625,
+          "relative_l2": 0.025875549763441086,
+          "pointwise_pass": false,
+          "top1_exact": true
+        }
+      ],
+      "config_sha256": "933aeb666a3fd851133ddd7686414f369bc564c4185fb5704416550879f10566",
+      "weight_index_sha256": "ede2655fdc05008561983b6e0829c600727c28d591e071077377059f03a6c00e",
+      "resident": {
+        "numerical_pass": false,
+        "routing_exact": false,
+        "top1_exact": true,
+        "report": "outputs/correctness/gpt_oss_120b_bf16_resident.json",
+        "top1_mismatches": [],
+        "max_logit_abs_error": 2.125
+      }
+    },
+    {
+      "dtype": "float32",
+      "atol": 0.001,
+      "rtol": 0.0002,
+      "numerical_pass": true,
+      "routing_exact": true,
+      "top1_exact": true,
+      "batch_vs_solo_pass": true,
+      "seconds": 216.18201834100182,
+      "decode_steps": 2,
+      "token_rows": [
+        [
+          3838,
+          374,
+          1378,
+          5519,
+          2326,
+          30,
+          20678,
+          264,
+          2805,
+          4226,
+          13
+        ],
+        [
+          840,
+          20772,
+          6050,
+          36,
+          26753,
+          13
+        ]
+      ],
+      "model": "qwen3_30b",
+      "layers": 48,
+      "full_model": true,
+      "passed": true,
+      "report": "outputs/correctness/qwen3_30b_fp32.json",
+      "max_logit_abs_error": 2.86102294921875e-05,
+      "max_logit_relative_l2": 2.0093266357434914e-06,
+      "logits_within_tolerance": true,
+      "top1_mismatches": [],
+      "hidden_checks_differing": 0,
+      "cache_within_tolerance": true,
+      "max_hidden_relative_l2": 2.3591423996549565e-06,
+      "routing_checks": 288,
+      "routing_checks_differing": 0,
+      "batch_vs_solo": [
+        {
+          "pass": true,
+          "max_abs": 1.1444091796875e-05,
+          "relative_l2": 4.192422693449771e-07
+        },
+        {
+          "pass": true,
+          "max_abs": 1.0013580322265625e-05,
+          "relative_l2": 4.6456634095193294e-07
+        },
+        {
+          "pass": true,
+          "max_abs": 8.58306884765625e-06,
+          "relative_l2": 2.767043270068825e-07
+        }
+      ],
+      "native_batch_vs_solo": [
+        {
+          "step": 0,
+          "max_abs": 1.33514404296875e-05,
+          "relative_l2": 5.550089667849534e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 1,
+          "max_abs": 1.71661376953125e-05,
+          "relative_l2": 9.940238214767305e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 2,
+          "max_abs": 1.1682510375976562e-05,
+          "relative_l2": 6.515157338071731e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        }
+      ],
+      "config_sha256": "002ebe91531ec67011b3d0c923234ef708c7da7d3b246045c4475d90b3d94628",
+      "weight_index_sha256": "270f54aead2ae634567310218340069621fd8dfa2ad80001b69888ea5cc03477",
+      "resident": {
+        "numerical_pass": true,
+        "routing_exact": true,
+        "top1_exact": true,
+        "report": "outputs/correctness/qwen3_30b_fp32_resident.json",
+        "top1_mismatches": [],
+        "max_logit_abs_error": 2.86102294921875e-05
+      }
+    },
+    {
+      "dtype": "bfloat16",
+      "atol": 0.25,
+      "rtol": 0.03,
+      "numerical_pass": false,
+      "routing_exact": false,
+      "top1_exact": false,
+      "batch_vs_solo_pass": false,
+      "seconds": 95.38290325200069,
+      "decode_steps": 2,
+      "token_rows": [
+        [
+          3838,
+          374,
+          1378,
+          5519,
+          2326,
+          30,
+          20678,
+          264,
+          2805,
+          4226,
+          13
+        ],
+        [
+          840,
+          20772,
+          6050,
+          36,
+          26753,
+          13
+        ]
+      ],
+      "model": "qwen3_30b",
+      "layers": 48,
+      "full_model": true,
+      "passed": false,
+      "report": "outputs/correctness/qwen3_30b_bf16.json",
+      "max_logit_abs_error": 2.7890625,
+      "max_logit_relative_l2": 0.19113999605178833,
+      "logits_within_tolerance": false,
+      "top1_mismatches": [
+        {
+          "case": "solo",
+          "step": 2,
+          "actual_top1": [
+            198
+          ],
+          "reference_top1": [
+            271
+          ]
+        }
+      ],
+      "hidden_checks_differing": 53,
+      "cache_within_tolerance": false,
+      "max_hidden_relative_l2": 0.1917794942855835,
+      "routing_checks": 288,
+      "routing_checks_differing": 122,
+      "batch_vs_solo": [
+        {
+          "pass": false,
+          "max_abs": 0.75,
+          "relative_l2": 0.037711478769779205
+        },
+        {
+          "pass": false,
+          "max_abs": 1.9609375,
+          "relative_l2": 0.1430327296257019
+        },
+        {
+          "pass": false,
+          "max_abs": 0.53125,
+          "relative_l2": 0.029989879578351974
+        }
+      ],
+      "native_batch_vs_solo": [
+        {
+          "step": 0,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 1,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 2,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "pointwise_pass": true,
+          "top1_exact": true
+        }
+      ],
+      "config_sha256": "002ebe91531ec67011b3d0c923234ef708c7da7d3b246045c4475d90b3d94628",
+      "weight_index_sha256": "270f54aead2ae634567310218340069621fd8dfa2ad80001b69888ea5cc03477",
+      "resident": {
+        "numerical_pass": false,
+        "routing_exact": false,
+        "top1_exact": false,
+        "report": "outputs/correctness/qwen3_30b_bf16_resident.json",
+        "top1_mismatches": [
+          {
+            "case": "solo",
+            "step": 2,
+            "actual_top1": [
+              198
+            ],
+            "reference_top1": [
+              271
+            ]
+          }
+        ],
+        "max_logit_abs_error": 2.7890625
+      }
+    },
+    {
+      "dtype": "float32",
+      "atol": 0.001,
+      "rtol": 0.0002,
+      "numerical_pass": true,
+      "routing_exact": true,
+      "top1_exact": true,
+      "batch_vs_solo_pass": true,
+      "seconds": 509.53115963701566,
+      "decode_steps": 2,
+      "token_rows": [
+        [
+          3838,
+          374,
+          1378,
+          5519,
+          2326,
+          30,
+          20678,
+          264,
+          2805,
+          4226,
+          13
+        ],
+        [
+          840,
+          20772,
+          6050,
+          36,
+          26753,
+          13
+        ]
+      ],
+      "model": "qwen3_235b",
+      "layers": 94,
+      "full_model": true,
+      "passed": true,
+      "report": "outputs/correctness/qwen3_235b_fp32.json",
+      "max_logit_abs_error": 1.601874828338623e-05,
+      "max_logit_relative_l2": 9.366264634991239e-07,
+      "logits_within_tolerance": true,
+      "top1_mismatches": [],
+      "hidden_checks_differing": 0,
+      "cache_within_tolerance": true,
+      "max_hidden_relative_l2": 1.2577462484841817e-06,
+      "routing_checks": 564,
+      "routing_checks_differing": 0,
+      "batch_vs_solo": [
+        {
+          "pass": true,
+          "max_abs": 1.1444091796875e-05,
+          "relative_l2": 5.065921868663281e-07
+        },
+        {
+          "pass": true,
+          "max_abs": 1.3113021850585938e-05,
+          "relative_l2": 8.774300113145728e-07
+        },
+        {
+          "pass": true,
+          "max_abs": 1.2934207916259766e-05,
+          "relative_l2": 9.231425792677328e-07
+        }
+      ],
+      "native_batch_vs_solo": [
+        {
+          "step": 0,
+          "max_abs": 1.430511474609375e-05,
+          "relative_l2": 5.955355959486042e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 1,
+          "max_abs": 1.4543533325195312e-05,
+          "relative_l2": 9.039499104801507e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 2,
+          "max_abs": 1.3470649719238281e-05,
+          "relative_l2": 8.654570819999208e-07,
+          "pointwise_pass": true,
+          "top1_exact": true
+        }
+      ],
+      "config_sha256": "f056921e486d3e22aed125b5218b87146ea2ac838ccf1521dea5b08f809e8d59",
+      "weight_index_sha256": "eba7df2a5452caffdfbbb2511cbd91ff887f1b62388f742e870cd16ce829bcb2",
+      "resident": "Not run: current free GPU memory cannot hold the full checkpoint per rank"
+    },
+    {
+      "dtype": "bfloat16",
+      "atol": 0.25,
+      "rtol": 0.03,
+      "numerical_pass": false,
+      "routing_exact": false,
+      "top1_exact": true,
+      "batch_vs_solo_pass": false,
+      "seconds": 352.77490520998253,
+      "decode_steps": 2,
+      "token_rows": [
+        [
+          3838,
+          374,
+          1378,
+          5519,
+          2326,
+          30,
+          20678,
+          264,
+          2805,
+          4226,
+          13
+        ],
+        [
+          840,
+          20772,
+          6050,
+          36,
+          26753,
+          13
+        ]
+      ],
+      "model": "qwen3_235b",
+      "layers": 94,
+      "full_model": true,
+      "passed": false,
+      "report": "outputs/correctness/qwen3_235b_bf16.json",
+      "max_logit_abs_error": 2.01171875,
+      "max_logit_relative_l2": 0.10532467067241669,
+      "logits_within_tolerance": false,
+      "top1_mismatches": [],
+      "hidden_checks_differing": 178,
+      "cache_within_tolerance": false,
+      "max_hidden_relative_l2": 0.1362990289926529,
+      "routing_checks": 564,
+      "routing_checks_differing": 248,
+      "batch_vs_solo": [
+        {
+          "pass": false,
+          "max_abs": 0.56640625,
+          "relative_l2": 0.03137069195508957
+        },
+        {
+          "pass": false,
+          "max_abs": 1.1328125,
+          "relative_l2": 0.07488035410642624
+        },
+        {
+          "pass": false,
+          "max_abs": 1.21875,
+          "relative_l2": 0.07856311649084091
+        }
+      ],
+      "native_batch_vs_solo": [
+        {
+          "step": 0,
+          "max_abs": 0.3125,
+          "relative_l2": 0.013438776135444641,
+          "pointwise_pass": true,
+          "top1_exact": true
+        },
+        {
+          "step": 1,
+          "max_abs": 0.703125,
+          "relative_l2": 0.04387187212705612,
+          "pointwise_pass": false,
+          "top1_exact": true
+        },
+        {
+          "step": 2,
+          "max_abs": 0.375,
+          "relative_l2": 0.022815382108092308,
+          "pointwise_pass": false,
+          "top1_exact": true
+        }
+      ],
+      "config_sha256": "f056921e486d3e22aed125b5218b87146ea2ac838ccf1521dea5b08f809e8d59",
+      "weight_index_sha256": "eba7df2a5452caffdfbbb2511cbd91ff887f1b62388f742e870cd16ce829bcb2",
+      "resident": "Not run: current free GPU memory cannot hold the full checkpoint per rank"
+    }
+  ],
+  "source_sha256": {
+    "moe_serving/gpt_oss_parallel.py": "dba870e63321f8f5c98a243ff981337ef364ea6b342d98763d7e6e5940bfd40a",
+    "moe_serving/qwen3_parallel.py": "b9f1ae0fa715b2eda09a28f0378c51d33a293948ddeebdc3cddcaf1bd6830101",
+    "tests/helpers/real_parallel_worker.py": "5843447e4e26bd36570ee87fcf24e58b191784e59b989551d930d85542f5d8e3",
+    "tests/helpers/resident_parallel_worker.py": "d2943d82c99ab0c093d7cc5d09be5569e34332c9e350cd4fa50445f0010c25ab",
+    "transformers-5.20.0/src/transformers/models/gpt_oss/modeling_gpt_oss.py": "5813a1eab9077ca096309b016600f5e3c6b1f4710504d86c088e67480ad627a8",
+    "transformers-5.20.0/src/transformers/models/qwen3_moe/modeling_qwen3_moe.py": "58387f2cc22a706e7e4c7dabe6cf05cb1e9c9fe48c57e2f2a0fc5cbdb2132f4f"
+  },
+  "scope": "Two short prompts, left-padded batch plus solo, prefill and two teacher-forced decode steps. Native eager reference with matching dequantized compute dtype; no fused quantized activation kernels.",
+  "torch_version": "2.16.0.dev20261021+cu130",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "passed": false,
+  "generated_at_utc": "2026-10-24T01:04:37.378670+00:00",
+  "regression": {
+    "command": "/home/sky/titan-venv/bin/python -m pytest tests/test_gpt_oss_parallel.py tests/test_qwen3_parallel.py tests/test_routing_json.py tests/test_engram_record.py -q",
+    "passed": 21,
+    "failed": 0,
+    "compute_dtype": "float32 for native-model parity tests",
+    "distributed_backend": "gloo on CPU"
+  },
+  "conclusions": {
+    "fp32_all_models_routing_logits_cache_top1_agree": true,
+    "fp32_strict_hidden_pointwise_failures": [
+      "gpt_oss_120b"
+    ],
+    "bf16_models_with_routing_differences": [
+      "gpt_oss_20b",
+      "gpt_oss_120b",
+      "qwen3_30b",
+      "qwen3_235b"
+    ],
+    "bf16_models_with_top1_differences": [
+      "qwen3_30b"
+    ],
+    "qwen3_30b_bf16_top1_difference_reproduced_in_production_resident_model": true,
+    "qwen3_30b_bf16_native_batch_solo_agree": true,
+    "scope_limitations": [
+      "Two short prompts and two fixed teacher-forced decode steps, not arbitrary or long-context workloads.",
+      "Qwen3 235B: every layer compared, but production fully resident loading not tested due to free GPU memory.",
+      "Native eager dequantized reference, not fused FP8/MXFP4 activation-quantized kernels."
+    ]
+  }
+}
