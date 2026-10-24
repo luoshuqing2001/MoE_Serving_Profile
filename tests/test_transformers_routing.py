@@ -4,13 +4,13 @@ import torch
 from safetensors import safe_open
 
 from moe_serving.record_routing import summarize_layer
-from moe_serving.transformers_src import REQUIRED_VERSION, ensure_transformers_5190
+from moe_serving.transformers_src import REQUIRED_VERSION, ensure_transformers_5200
 
 FP8 = "/home/sky/MoE_Serving_Profile/LLMs/Qwen3.8-Flash-Next-FP8"
 
 
-def test_vendored_transformers_is_5190():
-    source = ensure_transformers_5190()
+def test_vendored_transformers_is_5200():
+    source = ensure_transformers_5200()
     import transformers
 
     assert transformers.__version__ == REQUIRED_VERSION
@@ -18,7 +18,7 @@ def test_vendored_transformers_is_5190():
 
 
 def test_fp8_checkpoint_config_uses_block_scaled_fp8():
-    ensure_transformers_5190()
+    ensure_transformers_5200()
     from transformers import AutoConfig
 
     config = AutoConfig.from_pretrained(FP8, local_files_only=True)
@@ -30,7 +30,7 @@ def test_fp8_checkpoint_config_uses_block_scaled_fp8():
 
 
 def test_official_router_reads_the_fp8_checkpoint_gate():
-    ensure_transformers_5190()
+    ensure_transformers_5200()
     from transformers import AutoConfig
     from transformers.models.qwen4_exp.modeling_qwen4_exp import Qwen4ExpTextTopKRouter
 

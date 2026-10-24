@@ -3,7 +3,7 @@ import json
 import torch
 
 from moe_serving.record_routing import RoutingRecorder, split_batched_steps, write_routing_dir
-from moe_serving.transformers_src import ensure_transformers_5190
+from moe_serving.transformers_src import ensure_transformers_5200
 
 
 class _Ngram(torch.nn.Module):
@@ -27,7 +27,7 @@ class _Model(torch.nn.Module):
 
 
 def test_engram_hook_records_activated_rows():
-    ensure_transformers_5190()
+    ensure_transformers_5200()
     model = _Model()
     recorder = RoutingRecorder()
     recorder.attach(model)

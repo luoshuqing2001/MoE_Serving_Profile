@@ -1,4 +1,4 @@
-"""Record MoE routing from the local FP8 checkpoint via Transformers 5.19.0.
+"""Record MoE routing from the local FP8 checkpoint via Transformers 5.20.0.
 
 The router is ``Qwen4ExpTextTopKRouter`` in the vendored source. Experts run
 with ``experts_implementation="grouped_mm"``. ``model.generate`` does one
@@ -26,7 +26,7 @@ from pathlib import Path
 import torch
 
 from moe_serving.grouped_fp8 import patch_grouped_fp8_kernel
-from moe_serving.transformers_src import REQUIRED_VERSION, ensure_transformers_5190
+from moe_serving.transformers_src import REQUIRED_VERSION, ensure_transformers_5200
 
 DEFAULT_CHECKPOINT = Path("/home/sky/MoE_Serving_Profile/LLMs/Qwen3.8-Flash-Next-FP8")
 
@@ -204,7 +204,7 @@ def load_fp8_model(
     experts_implementation: str = "grouped_mm",
     ep_size: int = 1,
 ):
-    ensure_transformers_5190()
+    ensure_transformers_5200()
     patch_grouped_fp8_kernel()
     from transformers import DistributedConfig, Qwen4ExpForConditionalGeneration
 
@@ -504,16 +504,9 @@ def _write_json(path: Path, payload: dict) -> None:
 
 
 def sample_directory(output: Path, sample_id: str | None, sample_count: int) -> Path:
-    """Where one sample is written.
-
-    A single request is written directly into ``output``. A serving run writes
-    ``output/000``, ``output/001``, and so on, with no extra folder named after
-    the token file.
-    """
+    """Always give each request its own directory, including solo runs."""
     root = output.with_suffix("") if output.suffix in {".json", ".pt"} else output
-    if sample_count == 1 or sample_id is None:
-        return root
-    return root / sample_id
+    return root / (sample_id if sample_id is not None else "000")
 
 
 def write_routing_dir(
@@ -721,7 +714,7 @@ def _store_sample(args, rank, tokenizer, num_experts, sample_count, sample, reco
             "prompt_tokens": len(record["input_ids"]),
             "max_new_tokens": sample["max_new_tokens"],
             "decode_tokens": decode_tokens,
-            "directory": sample_dir.name if sample_count > 1 else ".",
+            "directory": sample_dir.name,
         }
     )
 
@@ -791,7 +784,7 @@ def main(argv: list[str] | None = None) -> None:
         "--output",
         type=Path,
         default=Path("outputs/routing"),
-        help="Directory. One request is written here. A serving workload writes 000, 001, ... inside it.",
+        help="Root directory; each sample writes its own subdirectory.",
     )
     parser.add_argument("--device-map", default=None)
     parser.add_argument("--experts-implementation", default="grouped_mm")
@@ -805,7 +798,7 @@ def main(argv: list[str] | None = None) -> None:
     args = parser.parse_args(argv)
     _relaunch_under_torchrun(args.ep_size)
 
-    ensure_transformers_5190()
+    ensure_transformers_5200()
     from transformers import AutoConfig, AutoTokenizer
 
     config = AutoConfig.from_pretrained(args.checkpoint, local_files_only=True)
